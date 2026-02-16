@@ -1,0 +1,300 @@
+📚 RINGKASAN APLIKASI STUDENT ACADEMIC PLANNER
+═════════════════════════════════════════════════════════════════════════
+
+Ini adalah aplikasi untuk ngelola jadwal, tugas, dan materi kuliah lo dengan mudah.
+Ringan, cepat, aman, dan nggak ribet! 🚀
+
+
+INSTALASI (RINGKAS BANGET!)
+═════════════════════════════════════════════════════════════════════════
+
+1. Copy folder "mhs" ke C:\xampp\htdocs\
+2. Nyalakan Apache & MySQL di XAMPP
+3. Buka phpMyAdmin: http://localhost/phpmyadmin
+4. Buat database "db_akademik"
+5. Import file "database.sql"
+6. Buka: http://localhost/mhs
+7. Login dengan: testuser / password123
+
+DONE! ✓
+
+
+FITUR-FITUR KEREN
+═════════════════════════════════════════════════════════════════════════
+
+🔓 LOGIN & REGISTER
+   - Buat akun sendiri dengan secure password
+   - Atau login dengan akun dummy (testuser)
+
+📊 DASHBOARD
+   - Jam digital yang update setiap detik
+   - Lihat jadwal kuliah hari ini
+   - Lihat tugas yang mau deadline
+   - Statistik: berapa mata kuliah, berapa tugas, berapa yang selesai
+
+📅 MANAJEMEN JADWAL
+   - Tambah, edit, hapus jadwal kuliah
+   - Input: nama MK, dosen, hari, jam, ruang
+   - Otomatis tampil di dashboard
+
+📝 MANAJEMEN TUGAS
+   - Tambah tugas dengan deadline
+   - Upload file (PDF, DOCX, ZIP - max 10MB)
+   - Lihat status: belum dikerjakan, sedang, atau selesai
+   - Auto-highlight tugas yang deadline dekat (warna merah = urgent)
+
+📚 UPLOAD MATERI
+   - Upload bahan ajar (PDF, DOCX, PPTX, XLSX - max 20MB)
+   - Organize by mata kuliah
+   - Download materi kapan aja
+
+🔔 PENGINGAT OTOMATIS (PALING KEREN!)
+   - Aplikasi otomatis cek setiap menit
+   - 15 menit sebelum kuliah dimulai → keluar notifikasi
+   - Notifikasi di browser + suara beep
+   - Isi: "Mata Kuliah X akan mulai 15 menit lagi!"
+
+🎨 DESAIN MODERN & RESPONSIF
+   - Tampil bagus di HP, tablet, dan laptop
+   - Warna-warna cerah & mudah dibaca
+   - Smooth animations yang nggak bikin lelet
+
+
+APA AJA YANG BIKIN AMAN
+═════════════════════════════════════════════════════════════════════════
+
+✓ Password di-encrypt (nggak bisa dibaca meski akses database)
+✓ Tidak ada SQL Injection (aman dari hacker)
+✓ File upload di-validasi (nggak bisa upload virus)
+✓ Session login aman (nggak bisa di-crack gampang)
+
+
+STRUKTUR FILE (YANG PENTING)
+═════════════════════════════════════════════════════════════════════════
+
+mhs/
+├── index.php                    ← Login & daftar
+├── dashboard.php                ← Dashboard utama
+├── tambah_jadwal.php            ← Kelola jadwal
+├── tambah_tugas.php             ← Kelola tugas + upload
+├── tambah_materi.php            ← Upload materi
+├── logout.php                   ← Logout
+│
+├── css/style.css                ← Styling cantik
+├── js/script.js                 ← Jam + reminder logic
+├── includes/db.php              ← Database connection
+│
+├── uploads/tugas/               ← Folder file tugas
+├── uploads/materi/              ← Folder file materi
+│
+├── database.sql                 ← SQL create database
+├── QUICK_START.txt              ← Instalasi cepat (baca ini!)
+├── PANDUAN_INSTALASI.txt        ← Panduan lengkap
+├── README.md                    ← Dokumentasi ringkas
+└── FILE_REFERENCE.txt           ← Penjelasan semua file
+
+
+CARA PAKAI (STEP BY STEP)
+═════════════════════════════════════════════════════════════════════════
+
+STEP 1: DAFTAR / LOGIN
+  → Buka http://localhost/mhs
+  → Klik "Login" atau "Daftar"
+  → Untuk testing, bisa pakai: testuser / password123
+
+STEP 2: TAMBAH JADWAL
+  → Klik menu "Jadwal"
+  → Isi form: nama MK, dosen, hari, jam mulai-selesai, ruang
+  → Klik "Simpan Jadwal"
+  → Jadwal langsung muncul
+
+STEP 3: TAMBAH TUGAS
+  → Klik menu "Tugas"
+  → Pilih mata kuliah (dari jadwal yang udah dibuat)
+  → Isi judul, deskripsi, deadline
+  → Bisa upload file atau nggak
+  → Klik "Simpan Tugas"
+
+STEP 4: UPLOAD MATERI
+  → Klik menu "Materi"
+  → Pilih mata kuliah
+  → Isi judul materi
+  → Upload file (WAJIB!)
+  → Klik "Upload Materi"
+
+STEP 5: LIHAT DASHBOARD
+  → Klik "Dashboard"
+  → Lihat jam, jadwal hari ini, tugas deadline
+  → Tunggu notifikasi 15 menit sebelum kuliah
+
+
+REMINDER GIMANA CARA KERJANYA?
+═════════════════════════════════════════════════════════════════════════
+
+1. Aplikasi cek waktu setiap menit
+2. Bandingkan dengan jadwal kuliah
+3. Kalo sekarang = 15 menit sebelum MK mulai → notifikasi keluar
+4. Notifikasi berisi: nama mata kuliah + peringatan
+5. Ada suara beep + banner warning + browser notification
+6. Notifikasi hilang sendiri setelah 10 detik
+
+Contoh:
+  Jadwal: Pemrograman Web mulai jam 08:00
+  Notifikasi keluar: Pukul 07:45 dengan pesan:
+  "🔔 PENGINGAT! Mata Kuliah Pemrograman Web akan dimulai 15 menit lagi!"
+
+
+TESTING AKUN
+═════════════════════════════════════════════════════════════════════════
+
+Username: testuser
+Password: password123
+
+Atau buat sendiri dengan klik "Daftar" (password minimal 6 karakter)
+
+
+UPLOAD FILE - SYARAT & KETENTUAN
+═════════════════════════════════════════════════════════════════════════
+
+TUGAS:
+  - Format: PDF, DOCX, ZIP, DOC, TXT
+  - Max size: 10 MB
+  - Tempat: uploads/tugas/
+
+MATERI:
+  - Format: PDF, DOCX, PPTX, XLSX, DOC, TXT
+  - Max size: 20 MB
+  - Tempat: uploads/materi/
+
+Tips: Kompres file kalo besar, upload berulang kalo error
+
+
+ERROR UMUM & SOLUSI
+═════════════════════════════════════════════════════════════════════════
+
+❌ "Tidak bisa koneksi database"
+✓ Solusi: Pastikan MySQL running (hijau) di XAMPP
+
+❌ "Halaman blank / Error 500"
+✓ Solusi: Buka file error log: C:\xampp\apache\logs\error.log
+
+❌ "Upload file gagal"
+✓ Solusi: 
+  - Buat folder: uploads/tugas/ dan uploads/materi/
+  - Atau biarkan aplikasi auto-create
+  - Cek ukuran file (jangan lebih dari limit)
+
+❌ "Login gagal"
+✓ Solusi:
+  - Pastikan database sudah di-import
+  - Cek username & password
+  - Coba register akun baru
+
+❌ "Reminder tidak muncul"
+✓ Solusi:
+  - Pastikan di halaman Dashboard
+  - Pastikan jadwal sudah ditambahkan
+  - Cek jam sistem komputer (jangan sembarangan)
+  - Tunggu di waktu yang tepat (15 menit sebelum kuliah)
+
+
+DATABASE GIMANA STRUKTURNYA?
+═════════════════════════════════════════════════════════════════════════
+
+DATABASE: db_akademik
+
+TABEL 1: users (User Account)
+  - id
+  - username (unik, nggak boleh sama)
+  - password_hash (encrypted)
+
+TABEL 2: matakuliah (Jadwal Kuliah)
+  - id
+  - user_id (siapa yang punya)
+  - nama_mk (nama mata kuliah)
+  - dosen
+  - hari (Senin, Selasa, dst)
+  - jam_mulai
+  - jam_selesai
+  - ruang
+
+TABEL 3: tugas (Tugas Kuliah)
+  - id
+  - user_id
+  - matakuliah_id (MK mana)
+  - judul
+  - deskripsi
+  - deadline
+  - status (Belum/Sedang/Selesai)
+  - file_path (optional)
+
+TABEL 4: materi (Bahan Ajar)
+  - id
+  - user_id
+  - matakuliah_id
+  - judul
+  - file_path
+
+
+KECEPATAN & KEAMANAN
+═════════════════════════════════════════════════════════════════════════
+
+KECEPATAN:
+✓ Nggak pakai framework (PHP native) = cepat!
+✓ File kecil & optimized
+✓ Database query udah pake index
+✓ Loading < 1 detik
+
+KEAMANAN:
+✓ Password pakai BCRYPT (super aman)
+✓ Prepared Statements (anti SQL Injection)
+✓ Session authentication (login aman)
+✓ File validation (anti upload virus)
+✓ Output escaping (anti XSS)
+
+
+TIPS BIAR LANCAR
+═════════════════════════════════════════════════════════════════════════
+
+1. Bikin jadwal dulu sebelum nambahin tugas
+2. Gunakan deadline yang realistis
+3. Lihat dashboard setiap hari
+4. Jangan delete file di folder uploads/ manual (pakai tombol Hapus)
+5. Backup database sebelum experiment
+6. Update status tugas secara berkala
+7. Organize materi by mata kuliah
+
+
+MINTA BANTUAN?
+═════════════════════════════════════════════════════════════════════════
+
+Baca file berikut:
+  1. QUICK_START.txt         ← Instalasi cepat (HARUS DIBACA!)
+  2. PANDUAN_INSTALASI.txt   ← Instalasi detail + troubleshooting
+  3. README.md               ← Dokumentasi ringkas
+  4. FILE_REFERENCE.txt      ← Penjelasan semua file
+
+Atau cek error log:
+  - C:\xampp\apache\logs\error.log
+  - C:\xampp\php\logs\php_error.log
+
+
+REQUIREMENT SYSTEM
+═════════════════════════════════════════════════════════════════════════
+
+✓ PHP 7.4+
+✓ MySQL 5.7+
+✓ XAMPP (atau server lain)
+✓ Browser modern (Chrome, Firefox, Edge, Safari)
+
+
+═════════════════════════════════════════════════════════════════════════
+
+                      ✨ SELAMAT MENGGUNAKAN! ✨
+
+        Aplikasi ini dibuat untuk bikin hidup lo lebih mudah.
+        Kelola jadwal, tugas, dan materi dengan cepat & aman!
+
+              Semoga membantu! Happy Coding! 🚀📚
+
+═════════════════════════════════════════════════════════════════════════

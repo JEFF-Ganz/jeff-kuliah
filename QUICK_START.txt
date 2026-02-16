@@ -1,0 +1,137 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║        ⚡ QUICK START CHECKLIST - INSTALASI 5 MENIT ⚡         ║
+║                                                                ║
+║         Student Academic Planner - Native PHP & MySQL         ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+
+PERSIAPAN
+═════════════════════════════════════════════════════════════════
+
+□ Install XAMPP (jika belum) → https://www.apachefriends.org
+□ Copy folder project ke C:\xampp\htdocs\mhs\
+□ Buka XAMPP Control Panel
+
+
+LANGKAH 1: START SERVER (1 Menit)
+═════════════════════════════════════════════════════════════════
+
+□ Klik [Start] tombol Apache    → Status: ✓ Running (hijau)
+□ Klik [Start] tombol MySQL     → Status: ✓ Running (hijau)
+
+Note: Jika error port, ubah port di Apache Config
+
+
+LANGKAH 2: BUAT DATABASE (1-2 Menit)
+═════════════════════════════════════════════════════════════════
+
+□ Buka browser: http://localhost/phpmyadmin
+□ Login: Username "root", Password kosongkan
+□ Menu "Databases"
+□ Ketik nama: db_akademik
+□ Pilih Collation: utf8mb4_unicode_ci
+□ Klik [Create]
+
+Database berhasil dibuat ✓
+
+
+LANGKAH 3: IMPORT SQL (1 Menit)
+═════════════════════════════════════════════════════════════════
+
+□ Di phpMyAdmin, pilih database "db_akademik"
+□ Tab "Import"
+□ Klik "Choose File" → pilih: database.sql
+□ Klik [Import]
+
+Tabel berhasil dibuat ✓
+(users, matakuliah, tugas, materi)
+
+
+LANGKAH 4: AKSES APLIKASI (30 Detik)
+═════════════════════════════════════════════════════════════════
+
+□ Buka browser
+□ Ketik URL: http://localhost/mhs
+□ Anda akan melihat halaman Login
+
+LOGIN TESTING:
+Username: testuser
+Password: password123
+
+Berhasil! ✓
+
+
+BONUS: KONFIGURASI CUSTOM (Opsional)
+═════════════════════════════════════════════════════════════════
+
+Jika password MySQL tidak kosong, edit file:
+  → includes/db.php
+  
+Ubah:
+  define('DB_PASS', '');  ← Ganti dengan password MySQL Anda
+
+
+FITUR SIAP PAKAI
+═════════════════════════════════════════════════════════════════
+
+✓ Login & Register
+✓ Dashboard dengan jam real-time
+✓ Manajemen jadwal kuliah
+✓ Manajemen tugas dengan upload file
+✓ Manajemen materi dengan upload file
+✓ Reminder otomatis 15 menit sebelum kuliah
+✓ Responsive design (mobile-friendly)
+✓ Keamanan password & SQL injection
+
+
+TROUBLESHOOTING CEPAT
+═════════════════════════════════════════════════════════════════
+
+❌ "Gagal koneksi database"
+→ Pastikan MySQL running (hijau)
+→ Cek config di includes/db.php
+
+❌ "Database doesn't exist"
+→ Import database.sql di phpMyAdmin
+
+❌ Halaman blank/error
+→ Cek Apache error log:
+   C:\xampp\apache\logs\error.log
+
+❌ Upload file gagal
+→ Buat folder: uploads/tugas/ dan uploads/materi/
+→ Set permissions: chmod 755
+
+
+DOKUMENTASI
+═════════════════════════════════════════════════════════════════
+
+📖 File lengkap baca:
+   → PANDUAN_INSTALASI.txt (Panduan lengkap + troubleshooting)
+   → README.md (Quick reference)
+   → FILE_REFERENCE.txt (Penjelasan file & fitur)
+
+
+NEXT STEPS
+═════════════════════════════════════════════════════════════════
+
+1. Explore dashboard → lihat statistik & reminder
+2. Tambah jadwal kuliah → Menu "Jadwal"
+3. Tambah tugas → Menu "Tugas"
+4. Upload materi → Menu "Materi"
+5. Buat akun sendiri → Tab "Daftar"
+
+
+═══════════════════════════════════════════════════════════════════
+
+              ✨ SEMUANYA SUDAH SIAP! SELAMAT MENGGUNAKAN! ✨
+
+                  Jika berhasil, kirim laporan testing:
+                   - ✓ Login berhasil
+                   - ✓ Dashboard terlihat
+                   - ✓ Tambah jadwal berfungsi
+                   - ✓ Upload file berhasil
+
+═══════════════════════════════════════════════════════════════════

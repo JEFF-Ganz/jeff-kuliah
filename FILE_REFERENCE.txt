@@ -1,0 +1,448 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║   📚 STUDENT ACADEMIC PLANNER - RINGKASAN FILE & FITUR                        ║
+║                                                                               ║
+║                        Aplikasi Akademik PHP Native + MySQL                  ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📁 DAFTAR FILE YANG DIBUAT (15 FILES + 1 FOLDER UPLOAD)
+█████████████████████████████████████████████████████████████████████████████████
+
+🗂️ STRUKTUR FOLDER:
+═══════════════════════════════════════════════════════════════════════════════
+
+c:\xampp\htdocs\mhs\
+│
+├─ 📄 database.sql                     ⭐ SQL Script untuk create database
+├─ 📄 index.php                        🔐 Login & Register page
+├─ 📄 dashboard.php                    📊 Dashboard utama
+├─ 📄 tambah_jadwal.php                📅 Manajemen jadwal kuliah
+├─ 📄 tambah_tugas.php                 📝 Manajemen tugas & upload
+├─ 📄 tambah_materi.php                📚 Manajemen materi & upload
+├─ 📄 logout.php                       🚪 Logout user
+│
+├─ 📄 delete_jadwal.php                ❌ Hapus jadwal (backend)
+├─ 📄 delete_tugas.php                 ❌ Hapus tugas (backend)
+├─ 📄 delete_materi.php                ❌ Hapus materi (backend)
+│
+├─ 📄 PANDUAN_INSTALASI.txt            📖 Panduan instalasi lengkap
+├─ 📄 README.md                        ℹ️ Dokumentasi ringkas
+│
+├─ 📁 css/
+│  └─ 📄 style.css                     🎨 CSS styling responsif
+│
+├─ 📁 js/
+│  └─ 📄 script.js                     ⚡ JavaScript (clock, reminder)
+│
+├─ 📁 includes/
+│  ├─ 📄 db.php                        💾 Database connection & functions
+│  ├─ 📄 header.php                    🏠 Header & navbar
+│  └─ 📄 footer.php                    👣 Footer & script loader
+│
+└─ 📁 uploads/
+   ├─ 📁 tugas/                        (Auto-created saat upload)
+   └─ 📁 materi/                       (Auto-created saat upload)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📋 PENJELASAN FILE PENTING
+█████████████████████████████████████████████████████████████████████████████████
+
+🔵 DATABASE.SQL - Script SQL Database
+═══════════════════════════════════════════════════════════════════════════════
+
+Berisi:
+✓ CREATE DATABASE db_akademik
+✓ CREATE TABLE users          (id, username, password_hash)
+✓ CREATE TABLE matakuliah     (id, user_id, nama_mk, dosen, hari, jam, ruang)
+✓ CREATE TABLE tugas          (id, user_id, matakuliah_id, judul, deadline, status, file)
+✓ CREATE TABLE materi         (id, user_id, matakuliah_id, judul, file_path)
+✓ CREATE INDEX untuk optimasi query
+
+Cara pakai:
+→ Import di phpMyAdmin atau mysql command line
+
+
+🔵 INCLUDES/DB.PHP - Koneksi Database & Fungsi Auth
+═══════════════════════════════════════════════════════════════════════════════
+
+Fungsi:
+✓ PDO Connection ke MySQL
+✓ registerUser($pdo, $username, $password)    - Register user baru
+✓ loginUser($pdo, $username, $password)       - Login user
+✓ isLoggedIn()                                  - Check session
+✓ requireLogin()                                - Redirect jika belum login
+
+Security:
+✓ Prepared Statements PDO (prevent SQL Injection)
+✓ password_hash() BCRYPT (secure password storage)
+✓ Session-based authentication
+
+
+🔵 INDEX.PHP - Login & Register Page
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur:
+✓ Tab interface (Login / Register)
+✓ Input validation (server & client side)
+✓ Show/Hide password toggle
+✓ Redirect ke dashboard jika sudah login
+✓ Dummy account untuk testing: testuser / password123
+
+Form:
+→ Login: Username, Password
+→ Register: Username, Password, Confirm Password
+
+
+🔵 DASHBOARD.PHP - Dashboard Utama
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur:
+✓ Jam digital real-time update setiap 1 detik
+✓ Jadwal kuliah hari ini (filter by hari)
+✓ Tugas mendekati deadline (sorted by deadline)
+✓ Statistik: Total MK, Total Tugas, Selesai, Pending
+✓ Notification banner untuk reminder
+✓ Quick actions (Edit, Hapus)
+
+Query Optimization:
+→ Menggunakan index pada user_id, matakuliah_id
+→ Filter by hari dan status untuk performa
+
+
+🔵 TAMBAH_JADWAL.PHP - Manajemen Jadwal Kuliah
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur:
+✓ Form tambah jadwal (nama_mk, dosen, hari, jam, ruang)
+✓ Validasi: jam_mulai < jam_selesai
+✓ Daftar jadwal tersimpan
+✓ Edit & Hapus jadwal
+✓ Sorted by hari & jam
+
+
+🔵 TAMBAH_TUGAS.PHP - Manajemen Tugas & Upload
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur:
+✓ Form tambah tugas (MK, judul, deskripsi, deadline, status)
+✓ Upload file opsional (PDF, DOCX, ZIP, DOC, TXT)
+✓ Validasi file size (max 10MB)
+✓ Auto-create uploads/tugas/ folder
+✓ Daftar tugas dengan status color coding
+✓ Download file yang sudah diupload
+✓ Edit & Hapus tugas
+
+Status Colors:
+→ 🔴 Overdue (deadline sudah lewat)
+→ 🟡 Urgent (1-3 hari)
+→ 🟢 Normal (lebih dari 3 hari)
+→ ✅ Completed (selesai)
+
+
+🔵 TAMBAH_MATERI.PHP - Manajemen Materi & Upload
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur:
+✓ Form upload materi (MK, judul, file wajib)
+✓ Support format: PDF, DOCX, PPTX, XLSX, DOC, TXT
+✓ Validasi file size (max 20MB)
+✓ Materi grid view dengan icon file type
+✓ Download materi
+✓ Hapus materi & file
+
+
+🔵 CSS/STYLE.CSS - Styling Responsif
+═══════════════════════════════════════════════════════════════════════════════
+
+Fitur CSS:
+✓ CSS Variables (--primary, --success, --danger, dll)
+✓ Flexbox & Grid layout
+✓ Responsive design (mobile, tablet, desktop)
+✓ Smooth animations & transitions
+✓ Modern color scheme (blue primary)
+✓ Dark text on light background (accessible)
+
+Responsive Breakpoints:
+→ 768px: Tablet
+→ 480px: Mobile
+
+
+🔵 JS/SCRIPT.JS - JavaScript untuk Fitur Interaktif
+═══════════════════════════════════════════════════════════════════════════════
+
+Fungsi:
+
+1. updateClock()
+   → Update jam digital setiap 1 detik
+   → Update tanggal dengan format Indonesia
+   → Display di #clock dan #date element
+
+2. checkReminders()
+   → Cek setiap menit otomatis (setInterval 60000ms)
+   → Hitung 15 menit sebelum jam kuliah
+   → Bandingkan dengan jam sekarang
+
+3. showReminder(namaMK)
+   → Tampilkan notification banner
+   → Putar audio beep (Web Audio API)
+   → Browser Notification (jika permission granted)
+   → Auto-hide setelah 10 detik
+
+4. Form Validation
+   → Validasi required fields
+   → File size check
+   → Delete confirmation
+
+Bonus Features:
+✓ Smooth scroll anchor links
+✓ Escape HTML untuk prevent XSS
+
+
+█████████████████████████████████████████████████████████████████████████████████
+🔐 KEAMANAN IMPLEMENTASI
+█████████████████████████████████████████████████████████████████████████████████
+
+1. SQL Injection Prevention
+   ✓ PDO Prepared Statements
+   ✓ Parameter binding dengan ? placeholder
+   ✓ Query example: $pdo->prepare("SELECT * FROM users WHERE username = ?")
+
+2. Password Security
+   ✓ password_hash($password, PASSWORD_BCRYPT)
+   ✓ password_verify($password, $hash)
+   ✓ Never store plain text passwords
+
+3. Session Security
+   ✓ $_SESSION['user_id'] & ['username']
+   ✓ requireLogin() check sebelum akses halaman
+   ✓ Redirect ke login jika belum authenticated
+
+4. File Upload Security
+   ✓ Whitelist extension (.pdf, .docx, .zip, .doc, .txt untuk tugas)
+   ✓ File size validation
+   ✓ Unlink file lama sebelum delete
+
+5. Output Escaping
+   ✓ htmlspecialchars() untuk prevent XSS
+   ✓ Escape HTML di JavaScript dengan escapeHtml()
+
+6. CSRF Prevention
+   ✓ POST form action validation (server-side)
+   ✓ Form action atribut jelas
+
+
+█████████████████████████████████████████████████████████████████████████████████
+⚙️ KONFIGURASI AWAL
+█████████████████████████████████████████████████████████████████████████████████
+
+1. Sebelum akses aplikasi, setup database:
+
+   Step 1: Buat database "db_akademik" di phpMyAdmin
+   Step 2: Import file "database.sql"
+   Step 3: Verifikasi tabel sudah terbuat (users, matakuliah, tugas, materi)
+
+2. Konfigurasi koneksi (jika berbeda dari default):
+   
+   File: includes/db.php
+   
+   define('DB_HOST', 'localhost');      // Ganti jika server berbeda
+   define('DB_USER', 'root');           // Ganti jika username berbeda
+   define('DB_PASS', '');               // Ganti jika ada password
+   define('DB_NAME', 'db_akademik');    // Nama database
+
+
+█████████████████████████████████████████████████████████████████████████████████
+🎯 FITUR-FITUR YANG DIIMPLEMENTASIKAN
+█████████████████████████████████████████████████████████████████████████████████
+
+✅ SEMUA REQUIREMENT TERCUKUPI:
+
+✓ Database & Tabel:
+  - users (id, username, password_hash)
+  - matakuliah (id, user_id, nama_mk, dosen, hari, jam_mulai, jam_selesai, ruang)
+  - tugas (id, user_id, matakuliah_id, judul, deskripsi, deadline, status, file_path)
+  - materi (id, user_id, matakuliah_id, judul, file_path)
+
+✓ Keamanan:
+  - password_hash() untuk password
+  - Prepared Statements PDO
+
+✓ Login & Register:
+  - Desain simpel & bersih
+  - Validasi input
+  - Tab interface (Login/Register)
+
+✓ Dashboard:
+  - Jadwal Hari Ini (filter by hari)
+  - Tugas Mendekati Deadline (sorted)
+  - Jam Digital Real-time (update setiap detik)
+
+✓ Fitur CRUD:
+  - Jadwal: Tambah, Edit, Hapus
+  - Tugas: Tambah, Upload File, Edit, Hapus
+  - Materi: Upload, Download, Hapus
+
+✓ Reminder System:
+  - Check setiap menit
+  - Alert 15 menit sebelum kuliah
+  - Browser notification + audio beep
+  - Notification banner
+
+✓ Frontend:
+  - HTML5 semantic
+  - CSS3 modern (Flexbox/Grid, responsif)
+  - JavaScript vanilla (no jQuery, no framework)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📖 CARA MENGGUNAKAN
+█████████████████████████████████████████████████████████████████████████████████
+
+AKSES APLIKASI:
+→ http://localhost/mhs
+
+LOGIN:
+→ Username: testuser
+→ Password: password123
+→ (atau daftar akun baru)
+
+NAVIGASI:
+→ Dashboard     : Lihat jadwal & tugas hari ini
+→ Jadwal        : Manajemen jadwal kuliah
+→ Tugas         : Manajemen tugas & upload file
+→ Materi        : Upload & download materi
+→ Logout        : Keluar aplikasi
+
+WORKFLOW REKOMENDASI:
+1. Login
+2. Tambah jadwal kuliah terlebih dahulu
+3. Tambah tugas (pilih dari jadwal yang sudah ada)
+4. Upload materi untuk setiap mata kuliah
+5. Check Dashboard setiap hari untuk reminder
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📊 DATABASE RELATIONSHIPS
+█████████████████████████████████████████████████████████████████████████████████
+
+users (1) ──── (N) matakuliah
+  ↓
+  └──── (N) tugas (via matakuliah)
+  └──── (N) materi (via matakuliah)
+
+Constraint:
+- ON DELETE CASCADE untuk FK (delete user → auto delete data user)
+- FK user_id di matakuliah, tugas, materi
+
+
+█████████████████████████████████████████████████████████████████████████████████
+✨ BONUS FEATURES
+█████████████████████████████████████████████████████████████████████████████████
+
+Fitur tambahan yang sudah diimplementasikan:
+
+1. Statistik Dashboard
+   - Total mata kuliah
+   - Total tugas
+   - Tugas selesai & pending
+
+2. Color Coding Status
+   - Overdue: Red
+   - Urgent (1-3 hari): Yellow
+   - Normal (>3 hari): Green
+   - Completed: Green
+
+3. Smart Reminder
+   - Audio notification (beep)
+   - Browser notification
+   - Visual banner
+
+4. Responsive Design
+   - Mobile-friendly
+   - Tablet-friendly
+   - Desktop-optimized
+
+5. File Management
+   - Auto-create upload folders
+   - File type validation
+   - File size validation
+   - Download file link
+
+
+█████████████████████████████████████████████████████████████████████████████████
+🎨 DESAIN UI/UX
+█████████████████████████████████████████████████████████████████████████████████
+
+Color Scheme:
+- Primary: #3498db (Blue)
+- Success: #27ae60 (Green)
+- Danger: #e74c3c (Red)
+- Warning: #f39c12 (Orange)
+- Text: #34495e (Dark Gray)
+- Background: #f5f7fa (Light Gray)
+
+Typography:
+- Font Family: Segoe UI, Tahoma, Geneva, Verdana
+- Headings: Bold, dark color
+- Body: Regular, readable size
+
+Layout:
+- Navbar sticky (fixed top)
+- Container max-width 1200px
+- Padding & spacing konsisten
+- Smooth transitions & animations
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📝 TESTING CHECKLIST
+█████████████████████████████████████████████████████████████████████████████████
+
+Sebelum go-live, test fitur-fitur berikut:
+
+□ Login dengan akun dummy
+□ Register akun baru
+□ Logout & login kembali
+□ Tambah jadwal kuliah
+□ Edit jadwal
+□ Hapus jadwal
+□ Tambah tugas tanpa file
+□ Upload file tugas (< 10MB)
+□ Upload file materi (< 20MB)
+□ Download file
+□ Hapus tugas & materi
+□ Check jadwal hari ini di dashboard
+□ Check reminder notification
+□ Test di berbagai browser (Chrome, Firefox, Edge)
+□ Test responsive design (resize window)
+□ Check performance (network tab F12)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📞 SUPPORT & DOCUMENTATION
+█████████████████████████████████████████████████████████████████████████████████
+
+Dokumentasi lengkap di:
+→ PANDUAN_INSTALASI.txt  (Instalasi + User Guide + Troubleshooting)
+→ README.md              (Quick reference)
+→ File kode selalu ada comments
+
+Error checking:
+→ Apache Log: C:\xampp\apache\logs\error.log
+→ PHP Error: C:\xampp\php\logs\php_error.log
+→ Browser Console: F12 > Console
+
+
+═══════════════════════════════════════════════════════════════════════════════════
+
+                    🎓 SELAMAT MENGGUNAKAN APLIKASI INI! 🎓
+
+Semoga aplikasi ini membantu Anda mengelola jadwal dan tugas akademik dengan lebih
+efisien. Jika ada pertanyaan atau masalah, lihat dokumentasi di PANDUAN_INSTALASI.txt
+
+Dibuat dengan ❤️ menggunakan PHP Native & MySQL | Selamat belajar! 📚
+
+═══════════════════════════════════════════════════════════════════════════════════

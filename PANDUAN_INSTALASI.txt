@@ -1,0 +1,551 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                                                                               ║
+║       📚 STUDENT ACADEMIC PLANNER & REPOSITORY - PANDUAN INSTALASI 📚        ║
+║                                                                               ║
+║                    Aplikasi Akademik Native PHP & MySQL                       ║
+║                                                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📋 DAFTAR ISI
+█████████████████████████████████████████████████████████████████████████████████
+
+1. PERSYARATAN SISTEM (Requirements)
+2. LANGKAH INSTALASI DI XAMPP/LOCALHOST
+3. STRUKTUR FOLDER DAN FILE
+4. FITUR-FITUR APLIKASI
+5. USER GUIDE (Panduan Penggunaan)
+6. TIPS & TRIK
+7. TROUBLESHOOTING
+
+
+█████████████████████████████████████████████████████████████████████████████████
+1️⃣ PERSYARATAN SISTEM
+█████████████████████████████████████████████████████████████████████████████████
+
+✅ PHP 7.4 atau lebih tinggi
+✅ MySQL 5.7 atau lebih tinggi
+✅ XAMPP (atau web server lainnya seperti AppServ, WampServer)
+✅ Browser modern (Chrome, Firefox, Edge, Safari)
+✅ Text Editor / IDE (VS Code, Sublime Text, PhpStorm, dll)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+2️⃣ LANGKAH INSTALASI DI XAMPP/LOCALHOST
+█████████████████████████████████████████████████████████████████████████████████
+
+📌 STEP 1: Download & Ekstrak File
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Download XAMPP dari https://www.apachefriends.org (jika belum terinstall)
+2. Install XAMPP dengan mengikuti wizard instalasi
+3. Ekstrak/copy folder project ke dalam: C:\xampp\htdocs\mhs\
+   
+   Struktur folder akan terlihat seperti:
+   C:\xampp\htdocs\mhs\
+   ├── css/
+   ├── js/
+   ├── uploads/
+   ├── includes/
+   ├── index.php
+   ├── dashboard.php
+   ├── database.sql
+   ├── ... (file PHP lainnya)
+
+
+📌 STEP 2: Aktifkan XAMPP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka XAMPP Control Panel
+2. Klik tombol [Start] pada Apache dan MySQL
+   ✓ Apache harus berwarna hijau = running
+   ✓ MySQL harus berwarna hijau = running
+
+Jika ada error port (Port 80 atau 3306 sudah dipakai):
+- Ubah port di File > Config > Apache Config
+- Atau matikan program lain yang menggunakan port tersebut
+
+
+📌 STEP 3: Buat Database
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka phpMyAdmin di browser: http://localhost/phpmyadmin
+   (atau http://localhost:8080/phpmyadmin jika XAMPP menggunakan port 8080)
+
+2. Login dengan:
+   Username: root
+   Password: (kosongkan/jangan ada password)
+
+3. Buat database baru:
+   - Klik menu "Databases" di phpMyAdmin
+   - Di kolom "Create Database", ketik: db_akademik
+   - Pilih Collation: utf8mb4_unicode_ci
+   - Klik tombol [Create]
+
+4. Import SQL Script:
+   - Pilih database "db_akademik" yang baru dibuat
+   - Klik tab "Import"
+   - Klik tombol "Choose File" dan pilih file database.sql
+   - Klik tombol [Import]
+   
+   ✓ Jika berhasil, akan muncul pesan sukses dan tabel-tabel sudah tercipta
+
+
+📌 STEP 4: Konfigurasi Database (Opsional)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Jika menggunakan username/password MySQL yang berbeda:
+
+1. Buka file: C:\xampp\htdocs\mhs\includes\db.php
+2. Ubah baris berikut sesuai konfigurasi MySQL Anda:
+   
+   define('DB_HOST', 'localhost');    // Alamat server (biasanya localhost)
+   define('DB_USER', 'root');         // Username MySQL
+   define('DB_PASS', '');             // Password MySQL (kosong = no password)
+   define('DB_NAME', 'db_akademik');  // Nama database
+
+3. Simpan file dengan Ctrl+S
+
+
+📌 STEP 5: Akses Aplikasi
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Buka browser (Chrome, Firefox, etc)
+2. Ketik URL: http://localhost/mhs
+   (Jika menggunakan port 8080: http://localhost:8080/mhs)
+
+3. Anda akan diarahkan ke halaman Login
+   
+4. Untuk testing, gunakan akun dummy:
+   Username: testuser
+   Password: password123
+   
+   Atau buat akun baru dengan tombol [Daftar Sekarang]
+
+
+█████████████████████████████████████████████████████████████████████████████████
+3️⃣ STRUKTUR FOLDER DAN FILE
+█████████████████████████████████████████████████████████████████████████████████
+
+mhs/
+├── 📁 css/
+│   └── style.css                    # File styling utama (Responsive Design)
+│
+├── 📁 js/
+│   └── script.js                    # JavaScript (Clock, Reminder, Validation)
+│
+├── 📁 uploads/                      # Folder tempat upload file
+│   ├── 📁 tugas/                    # Upload file tugas
+│   └── 📁 materi/                   # Upload file materi
+│
+├── 📁 includes/                     # File-file include/helper
+│   ├── db.php                       # Koneksi database & fungsi auth
+│   ├── header.php                   # Header & navbar (di-include di setiap halaman)
+│   └── footer.php                   # Footer & script js
+│
+├── 📄 database.sql                  # SQL script untuk membuat database
+│
+├── 📄 index.php                     # Halaman Login & Register (entry point)
+├── 📄 dashboard.php                 # Dashboard utama (jadwal, tugas, statistik)
+├── 📄 tambah_jadwal.php             # Manajemen jadwal kuliah
+├── 📄 tambah_tugas.php              # Manajemen tugas & upload file
+├── 📄 tambah_materi.php             # Manajemen materi & upload file
+│
+├── 📄 delete_jadwal.php             # Hapus jadwal (backend)
+├── 📄 delete_tugas.php              # Hapus tugas (backend)
+├── 📄 delete_materi.php             # Hapus materi (backend)
+│
+├── 📄 logout.php                    # Logout user
+│
+└── 📄 PANDUAN_INSTALASI.txt         # File ini
+
+
+█████████████████████████████████████████████████████████████████████████████████
+4️⃣ FITUR-FITUR APLIKASI
+█████████████████████████████████████████████████████████████████████████████████
+
+🔐 AUTENTIKASI & KEAMANAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Halaman Login & Register
+   - Username harus unik
+   - Password di-hash menggunakan password_hash() (BCRYPT) - aman!
+   - Validasi input client-side & server-side
+
+✅ Session Management
+   - User harus login untuk akses dashboard
+   - Session otomatis dihapus saat logout
+   - Proteksi akses dengan requireLogin()
+
+✅ SQL Injection Prevention
+   - Menggunakan PDO Prepared Statements
+   - Semua query menggunakan placeholder (?)
+
+
+📅 DASHBOARD UTAMA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Jam Digital Real-Time
+   - Menampilkan jam, menit, detik yang update setiap 1 detik
+   - Juga menampilkan tanggal hari ini
+
+✅ Jadwal Kuliah Hari Ini
+   - Otomatis filter berdasarkan hari hari ini
+   - Menampilkan mata kuliah, dosen, ruang, jam mulai-selesai
+   - Tombol Edit & Hapus untuk setiap jadwal
+
+✅ Tugas Mendekati Deadline
+   - Urutkan dari deadline terdekat
+   - Tampilkan status (Belum/Sedang/Selesai)
+   - Highlight dengan warna berbeda berdasarkan urgency
+   - Tombol Edit & Hapus
+
+✅ Statistik Ringkas
+   - Total mata kuliah
+   - Total tugas
+   - Tugas yang sudah selesai
+   - Tugas yang masih pending
+
+
+🎓 MANAJEMEN JADWAL KULIAH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Tambah Jadwal Baru
+   Input: Nama MK, Dosen, Hari (Senin-Minggu), Jam Mulai, Jam Selesai, Ruang
+   - Validasi: Jam mulai harus lebih kecil dari jam selesai
+
+✅ Lihat Semua Jadwal
+   - Grouped by hari & jam
+   - Edit & Hapus jadwal
+
+✅ Edit Jadwal (di halaman edit_jadwal.php - bisa ditambahkan)
+   - Update jadwal yang sudah ada
+
+
+📝 MANAJEMEN TUGAS & UPLOAD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Tambah Tugas Baru
+   Input: Mata Kuliah, Judul, Deskripsi, Deadline, Status
+   Upload: File opsional (PDF, DOCX, ZIP, DOC, TXT)
+   
+   Validasi Upload:
+   - Max size: 10 MB
+   - File disimpan di: uploads/tugas/
+
+✅ Lihat Daftar Tugas
+   - Tampilkan semua tugas
+   - Filter by status
+   - Tampilkan file yang sudah diupload
+   - Download file yang ada
+
+✅ Status Tugas
+   - Belum Dikerjakan (Red)
+   - Sedang Dikerjakan (Yellow)
+   - Selesai (Green)
+   - Terlambat (jika deadline sudah lewat)
+
+
+📚 MANAJEMEN MATERI & UPLOAD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Upload Materi Baru
+   Input: Mata Kuliah, Judul Materi
+   Upload: File wajib (PDF, DOCX, PPTX, XLSX, DOC, TXT)
+   
+   Validasi Upload:
+   - Max size: 20 MB
+   - File disimpan di: uploads/materi/
+
+✅ Lihat Materi dalam Grid
+   - Tampilkan icon file type
+   - Download materi
+   - Hapus materi
+
+✅ Organisir by Mata Kuliah
+   - Mudah ditemukan
+
+
+🔔 FITUR REMINDER (PENGINGAT REAL-TIME)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ Cek Setiap Menit
+   JavaScript otomatis mengecek waktu sekarang setiap menit
+
+✅ Alert Ketika 15 Menit Sebelum Kuliah
+   Jika waktu sekarang = 15 menit sebelum jam mulai MK
+   Akan muncul:
+   - Notification banner di halaman web
+   - Browser notification (jika diizinkan)
+   - Audio beep notification
+
+✅ Format Pesan:
+   "🔔 PENGINGAT!
+    Mata Kuliah [NAMA MK] akan dimulai 15 menit lagi!
+    Segera persiapkan dirimu! 📚"
+
+
+█████████████████████████████████████████████████████████████████████████████████
+5️⃣ USER GUIDE (PANDUAN PENGGUNAAN)
+█████████████████████████████████████████████████████████████████████████████████
+
+👤 MEMBUAT AKUN BARU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Akses http://localhost/mhs
+2. Klik tab "Daftar"
+3. Isi form:
+   - Username: Pilih username unik (min 3-20 karakter)
+   - Password: Min 6 karakter
+   - Konfirmasi Password: Ulangi password Anda
+4. Klik tombol "Daftar Sekarang"
+5. Jika sukses, akan muncul pesan "Registrasi berhasil!"
+6. Klik tab "Login" dan login dengan akun baru Anda
+
+
+🔓 LOGIN KE APLIKASI
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Akses http://localhost/mhs
+2. Isi Username & Password Anda
+3. Klik tombol "Login"
+4. Anda akan diarahkan ke Dashboard
+
+
+📅 MENAMBAH JADWAL KULIAH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Klik menu "Jadwal" di navbar
+2. Scroll ke bagian "Tambah Jadwal Baru"
+3. Isi form:
+   - Nama Mata Kuliah: Contoh "Pemrograman Web"
+   - Nama Dosen: Contoh "Dr. Ahmad Wijaya"
+   - Hari: Pilih dari dropdown (Senin-Minggu)
+   - Jam Mulai: Gunakan time picker, contoh 08:00
+   - Jam Selesai: Contoh 10:00
+   - Ruang Kelas: Contoh "A101"
+4. Klik tombol "Simpan Jadwal"
+5. Jadwal akan ditampilkan di halaman tersebut
+6. Jadwal Hari Ini juga akan muncul di Dashboard
+
+
+📝 MENAMBAH TUGAS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Klik menu "Tugas" di navbar
+2. Scroll ke bagian "Tambah Tugas Baru"
+3. Isi form:
+   - Pilih Mata Kuliah: (Pilih dari jadwal yang sudah dibuat)
+   - Judul Tugas: Contoh "Buat Program Java"
+   - Deskripsi: Penjelasan tugas (opsional)
+   - Deadline: Pilih tanggal deadline
+   - Status: Pilih status (Belum/Sedang/Selesai)
+   - Upload File: Pilih file (opsional, max 10MB)
+4. Klik tombol "Simpan Tugas"
+5. Tugas akan muncul di daftar
+
+
+📚 UPLOAD MATERI KULIAH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Klik menu "Materi" di navbar
+2. Scroll ke bagian "Upload Materi Baru"
+3. Isi form:
+   - Pilih Mata Kuliah
+   - Judul Materi: Contoh "BAB 1 - Pengenalan Web"
+   - Upload File: Pilih file materi (PDF, DOCX, PPTX, dll) - WAJIB!
+4. Klik tombol "Upload Materi"
+5. Materi akan ditampilkan dalam grid
+
+
+📥 DOWNLOAD FILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dari Dashboard atau halaman Tugas:
+- Klik link "Lihat File" untuk membuka file di tab baru
+- Atau right-click > "Save Link As" untuk download
+
+Dari Materi:
+- Klik tombol "Download" (warna biru) untuk download file
+
+
+🔔 MENERIMA PENGINGAT KULIAH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Pastikan Anda di halaman Dashboard
+2. Sistem akan otomatis cek setiap menit
+3. Ketika 15 menit sebelum kuliah mulai:
+   - Akan muncul notifikasi di halaman (banner warning)
+   - Jika Browser Notification diizinkan, akan muncul pop-up
+   - Akan ada suara notifikasi (beep)
+4. Notifikasi akan otomatis hilang setelah 10 detik
+
+
+█████████████████████████████████████████████████████████████████████████████████
+6️⃣ TIPS & TRIK
+█████████████████████████████████████████████████████████████████████████████████
+
+💡 TIPS PENGGUNAAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Pastikan jadwal sudah ditambahkan sebelum menambahkan tugas
+  (Karena tugas harus dikaitkan dengan mata kuliah)
+
+✓ Gunakan deadline yang akurat untuk reminder yang tepat waktu
+
+✓ Periksa Dashboard setiap pagi untuk melihat jadwal dan tugas hari ini
+
+✓ Upload materi dengan nama file yang jelas dan deskriptif
+
+✓ Jangan hapus file di folder uploads/ secara manual, gunakan tombol Hapus
+
+✓ Buat backup database secara berkala (export dari phpMyAdmin)
+
+
+⚡ PERFORMANCE TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Aplikasi ini sangat ringan dan cepat (tanpa framework)
+
+✓ Semua file statis (CSS, JS) di-cache browser secara otomatis
+
+✓ Database queries sudah dioptimasi dengan INDEX
+
+✓ Ukuran file upload dibatasi agar tidak membebani server
+
+
+🔐 SECURITY TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Jangan share username & password aplikasi
+
+✓ Logout setelah selesai menggunakan aplikasi
+
+✓ Jangan ubah kode PHP (terutama di db.php) tanpa pengetahuan
+
+✓ Ganti password default MySQL setelah instalasi (untuk production)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+7️⃣ TROUBLESHOOTING
+█████████████████████████████████████████████████████████████████████████████████
+
+❌ MASALAH: "Connection Refused" atau Gagal Koneksi Database
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Pastikan Apache dan MySQL sudah running (hijau di XAMPP)
+2. Cek file includes/db.php apakah konfigurasi sudah benar
+3. Cek apakah database db_akademik sudah dibuat di phpMyAdmin
+4. Cek error log di C:\xampp\apache\logs\error.log
+
+
+❌ MASALAH: "Database doesn't exist" 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Buka phpMyAdmin: http://localhost/phpmyadmin
+2. Buat database "db_akademik" (lihat STEP 3 di atas)
+3. Import file database.sql ke dalam database tersebut
+
+
+❌ MASALAH: Upload File Gagal
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Cek apakah folder uploads/tugas/ dan uploads/materi/ sudah ada
+2. Jika belum, buat manual atau aplikasi akan auto-create
+3. Pastikan file size kurang dari limit:
+   - Tugas: max 10 MB
+   - Materi: max 20 MB
+4. Cek format file (hanya .pdf .docx .zip .doc .txt untuk tugas)
+5. Cek permissions folder uploads (harus writable)
+
+
+❌ MASALAH: Halaman Blank atau Error 500
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Cek error log di browser (F12 > Console)
+2. Cek PHP error log di C:\xampp\apache\logs\error.log
+3. Matikan error display di php.ini dan aktifkan error logging
+4. Pastikan semua file include sudah ada (db.php, header.php, footer.php)
+
+
+❌ MASALAH: Login/Register Tidak Berfungsi
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Pastikan tabel "users" sudah ada di database (cek di phpMyAdmin)
+2. Pastikan session_start() di-call di awal file (sudah ada di db.php)
+3. Cek apakah PHP sessions folder writable (biasanya sudah default)
+4. Clear browser cookies/cache
+5. Gunakan incognito/private mode untuk test login ulang
+
+
+❌ MASALAH: Reminder Tidak Muncul
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Pastikan Anda membuka Dashboard (http://localhost/mhs/dashboard.php)
+2. Pastikan jadwal sudah ditambahkan dengan jam yang akurat
+3. Cek jam sistem komputer Anda (pastikan akurat)
+4. Buka browser console (F12 > Console) cek apakah ada error
+5. Reminder hanya muncul pada waktu yang tepat (15 menit sebelum kuliah)
+
+
+❌ MASALAH: Halaman Stylesheet Tidak Dimuat (CSS Tidak Bekerja)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Solusi:
+1. Cek apakah file css/style.css sudah ada
+2. Cek path CSS di halaman (lihat view-source)
+3. Cek browser console (F12 > Network) apakah CSS berhasil dimuat
+4. Jika masih tidak muncul, clear browser cache (Ctrl+Shift+Delete)
+5. Coba dengan incognito mode
+
+
+█████████████████████████████████████████████████████████████████████████████████
+📞 BANTUAN LEBIH LANJUT
+█████████████████████████████████████████████████████████████████████████████████
+
+Jika mengalami masalah yang tidak terdaftar di atas:
+
+1. Cek file error log:
+   - Apache: C:\xampp\apache\logs\error.log
+   - PHP: C:\xampp\php\logs\php_error.log
+   
+2. Test koneksi database dengan membuat file test.php:
+   
+   <?php
+   require 'includes/db.php';
+   echo "Koneksi Database: OK!";
+   ?>
+   
+   Akses http://localhost/mhs/test.php
+
+3. Cek phpMyAdmin:
+   - Pastikan database db_akademik ada
+   - Pastikan tabel users, matakuliah, tugas, materi ada
+   - Pastikan ada data di tabel users
+
+4. Cek file permissions:
+   - uploads/ folder harus writable (chmod 755 atau 777)
+
+
+█████████████████████████████████████████████████████████████████████████████████
+✨ SELESAI! HAPPY CODING! ✨
+█████████████████████████████████████████████████████████████████████████████████
+
+Semoga aplikasi ini bermanfaat untuk membantu Anda mengelola jadwal dan tugas akademik!
+
+Jika puas dengan aplikasi ini, jangan lupa:
+- ⭐ Bookmark halaman ini
+- 📖 Share dengan teman-teman
+- 💻 Customize sesuai kebutuhan Anda
+
+Dibuat dengan ❤️ menggunakan PHP Native & MySQL
+Selamat belajar! 📚🎓
+
+═══════════════════════════════════════════════════════════════════════════════════
